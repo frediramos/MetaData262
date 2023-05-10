@@ -12,6 +12,22 @@ import Box from '@mui/material/Box';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import ToggleButton from '@mui/material/ToggleButton';
 
+
+
+function exportTests (tests) {
+  
+  const testPaths = [];
+  tests.forEach(test => testPaths.push(test.path))
+  const fileData = JSON.stringify(testPaths, null, 4); 
+  const blob = new Blob([fileData], { type: "text/plain" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.download = "tests-paths.json";
+  link.href = url;
+  link.click();
+}
+
+
 const TestSearch = () => {
 
   const metadata = require('../data/metadata.json');
@@ -31,7 +47,7 @@ const TestSearch = () => {
   // fetch info for query from database
   useEffect(() => {
  
-    let tests = metadata 
+    const tests = metadata 
     setAllTests(tests);
     const versions = new Set();
     const builtIns = new Set();
@@ -47,7 +63,8 @@ const TestSearch = () => {
     setListBuiltInsContained([...builtIns].sort());
     setFetchedTests(true);
 
-  }, [allTests]);
+  }, [allTests, metadata]);
+
 
 
   const getSearchResultsFrontend = () => {
@@ -144,6 +161,11 @@ const TestSearch = () => {
           <Box >        
             {presentType !== 'STATS' && <Box>
               <Typography variant='h6' component='h3' gutterBottom>Number of tests: {searchResults.length}</Typography>
+   
+              <Button onClick={() => exportTests(searchResults)}>
+              Download
+              </Button>
+   
               <DisplayTests tests={searchResults} presentType={presentType} />
             </Box>}
             {presentType === 'STATS' && <Box>

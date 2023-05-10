@@ -6,6 +6,12 @@ import Pagination from "@mui/material/Pagination";
 import SyntaxHighlighter from 'react-syntax-highlighter'
 
 
+function MouseOver(event) {
+  event.target.style.background = '#abb8c3';
+}
+function MouseOut(event){
+  event.target.style.background="";
+}
 
 const DisplayTests = ({ tests, presentType }) => {
   const [page, setPage] = useState(1);
@@ -17,8 +23,8 @@ const DisplayTests = ({ tests, presentType }) => {
       return (
         <>
         <Typography variant='subtitle1' content='p'>
-        <Paper elevation={4} key={test._id}>
-          <SyntaxHighlighter onClick={() => window.open('https://github.com/tc39/test262/tree/main/' + test.path, '_blank')} language="sh" wrapLongLines>
+        <Paper onMouseOver={MouseOver} onMouseOut={MouseOut} elevation={4} key={test._id}>
+          <SyntaxHighlighter  onClick={() => window.open('https://github.com/tc39/test262/tree/main/' + test.path, '_blank')} language="sh" wrapLongLines>
             {test.path}
           </SyntaxHighlighter>
         </Paper>
