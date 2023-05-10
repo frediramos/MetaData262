@@ -47,7 +47,7 @@ const TestSearch = () => {
     setListBuiltInsContained([...builtIns].sort());
     setFetchedTests(true);
 
-  }, [metadata]);
+  }, [allTests]);
 
 
   const getSearchResultsFrontend = () => {

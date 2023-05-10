@@ -11,13 +11,14 @@ const DisplayTests = ({ tests, presentType }) => {
   const [page, setPage] = useState(1);
   const itemsPerPage = 10;
 
+
   const displayTest = (test, presentType) => {
     if (presentType === 'Path') {
       return (
         <>
         <Typography variant='subtitle1' content='p'>
         <Paper elevation={4} key={test._id}>
-          <SyntaxHighlighter language="sh" wrapLongLines>
+          <SyntaxHighlighter onClick={() => window.open('https://github.com/tc39/test262/tree/main/' + test.path, '_blank')} language="sh" wrapLongLines>
             {test.path}
           </SyntaxHighlighter>
         </Paper>
