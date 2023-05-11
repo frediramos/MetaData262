@@ -4,18 +4,23 @@ import SingleSelect from "./SingleSelect";
 import DisplayTests from "./DisplayTests";
 import DisplayStatistics from "./DisplayStatistics";
 
+import Popup from 'reactjs-popup';
 import Button from "@mui/material/Button"
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import Divider from '@mui/material/Divider';
+import Grid from '@mui/material/Grid';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import ToggleButton from '@mui/material/ToggleButton';
 
-
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
 
 function exportTests (tests) {
-  
   const testPaths = [];
   tests.forEach(test => testPaths.push(test.path))
   const fileData = JSON.stringify(testPaths, null, 4); 
@@ -26,6 +31,7 @@ function exportTests (tests) {
   link.href = url;
   link.click();
 }
+
 
 
 const TestSearch = () => {
@@ -99,11 +105,101 @@ const TestSearch = () => {
     setHasFirstSearch(true);
   }
 
+  function MouseOver(event) {
+    event.target.style.background = '#abb8c3';
+  }
+  function MouseOut(event){
+    event.target.style.background="";
+  }
+
+  const overlayStyle = { background: 'rgba(0,0,0,0.5)' };
+
+
   return (
     <>
       <CssBaseline enableColorScheme />
       <Container align="center" disableGutters maxWidth="lg">
         <Typography variant='h2' component='h1'>MetaData262</Typography>
+        <Divider variant="middle" />
+
+        <Grid container justifyContent="center" sx={{ mb: 2 }}>
+          
+          <Grid item xs={1}> 
+          <Popup trigger={<Typography variant='h5' component='h1'
+            onMouseOver={MouseOver}
+            onMouseOut={MouseOut}
+            {...{overlayStyle}}
+            
+            >Authors</Typography>}  modal>
+          
+        <Box   sx={{
+          
+        border: '2px solid',
+        borderRadius: 1,  
+        width: 300,
+        height: 300,
+        borderColor: 'grey.500',
+        backgroundColor: 'white',
+        }} >
+          <List>
+
+          <Typography variant='h5' component='h1' align="center">Authors</Typography>
+          <Divider variant="middle" sx={{ mb: 2 }}/>
+
+            <ListItem>
+              <ListItemButton>
+                <ListItemText  sx={{
+              listStyleType: "disc",
+              display: "list-item",
+              }} primary="Frederico Ramos"  onClick={() => window.open('https://frediramos.github.io/', '_blank')} />
+              </ListItemButton>
+            </ListItem>
+            
+            <ListItem>
+              <ListItemButton>
+                <ListItemText  sx={{
+              listStyleType: "disc",
+              display: "list-item",
+              }} primary="Diogo Reis"/>
+              </ListItemButton>
+            </ListItem>
+
+            <ListItem>
+              <ListItemButton>
+                <ListItemText  sx={{
+              listStyleType: "disc",
+              display: "list-item",
+              }} primary="José Fragoso Santos"  onClick={() => window.open('https://web.ist.utl.pt/~jose.fragoso/', '_blank')} />
+              </ListItemButton>
+            </ListItem>
+
+          </List>
+          </Box>
+
+        </Popup>
+
+          </Grid>
+          
+          <Divider orientation="vertical" flexItem/>
+         
+          <Grid item xs={1}>   
+            <Typography variant='h5' component='h1'
+             onMouseOver={MouseOver}
+             onMouseOut={MouseOut}  
+             onClick={() => window.open('https://zenodo.org/', '_blank')}>VM</Typography> 
+          </Grid>
+          
+          <Divider orientation="vertical" flexItem/>
+          
+          <Grid item xs={1}> 
+            <Typography variant='h5' component='h1' 
+            onMouseOver={MouseOver} onMouseOut={MouseOut}
+            onClick={() => window.open('https://www.youtube.com', '_blank')}>Demo</Typography>
+          </Grid>
+
+
+
+        </Grid>
         <Box>
           <Box>
             <MultipleSelect
