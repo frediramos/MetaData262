@@ -137,7 +137,7 @@ const TestSearch = () => {
         border: '2px solid',
         borderRadius: 1,  
         width: 300,
-        height: 300,
+        height: 400,
         borderColor: 'grey.500',
         backgroundColor: 'white',
         }} >
@@ -172,6 +172,24 @@ const TestSearch = () => {
               }} primary="José Fragoso Santos"  onClick={() => window.open('https://web.ist.utl.pt/~jose.fragoso/', '_blank')} />
               </ListItemButton>
             </ListItem>
+            
+            <ListItem>
+              <ListItemButton>
+                <ListItemText  sx={{
+              listStyleType: "disc",
+              display: "list-item",
+              }} primary="António Morgado"  onClick={() => window.open('https://scholar.google.com/citations?user=iAok8mcAAAAJ&hl=en', '_blank')} />
+              </ListItemButton>
+            </ListItem>
+
+            <ListItem>
+              <ListItemButton>
+                <ListItemText  sx={{
+              listStyleType: "disc",
+              display: "list-item",
+              }} primary="Miguel Trigo"/>
+              </ListItemButton>
+            </ListItem>
 
           </List>
           </Box>
@@ -186,7 +204,7 @@ const TestSearch = () => {
             <Typography variant='h5' component='h1'
              onMouseOver={MouseOver}
              onMouseOut={MouseOut}  
-             onClick={() => window.open('https://zenodo.org/', '_blank')}>VM</Typography> 
+             onClick={() => window.open('https://doi.org/10.5281/zenodo.7942804', '_blank')}>VM</Typography> 
           </Grid>
           
 
