@@ -132,7 +132,7 @@ const TestSearch = () => {
             
             >Authors</Typography>}  modal>
           
-        <Box   sx={{
+        <Box sx={{
           
         border: '2px solid',
         borderRadius: 1,  
@@ -189,15 +189,6 @@ const TestSearch = () => {
              onClick={() => window.open('https://zenodo.org/', '_blank')}>VM</Typography> 
           </Grid>
           
-          <Divider orientation="vertical" flexItem/>
-          
-          <Grid item xs={1}> 
-            <Typography variant='h5' component='h1' 
-            onMouseOver={MouseOver} onMouseOut={MouseOut}
-            onClick={() => window.open('https://www.youtube.com', '_blank')}>Demo</Typography>
-          </Grid>
-
-
 
         </Grid>
         <Box>
