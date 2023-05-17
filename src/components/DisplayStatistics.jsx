@@ -69,8 +69,8 @@ const DisplayTests = ({ tests, versions }) => {
 
   return (
     <>
-      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-        <Grid item xs={5.5}>
+      <Grid container>
+        <Grid item xs={4}>
         <VictoryPie
             theme={VictoryTheme.material}
             data={statistics[0]}
@@ -82,21 +82,27 @@ const DisplayTests = ({ tests, versions }) => {
         </Grid>
         <Grid item xs={6}>
           <VictoryChart
+            height={statistics[1][0].length * 1.5}
+            padding={{left: 85, right:10 }}
               theme={VictoryTheme.material}
+              minDomain={{ y: 0 }}
           >
             <VictoryAxis
+              // tickCount = {10}
               tickLabelComponent={(
                 <VictoryLabel
-                    
-                    textAnchor="start"
-                    x={0}
-              />
+                textAnchor="start"
+                x={-0.6}
+                />
               )}
+              
               style={{
               tickLabels: {
-                fontSize: 8,
+                fontSize: 7,
+                padding: 20
               }
               }}
+
               // tickValues specifies both the number of ticks and where
               // they are placed on the axis
               // tickValues={[...Array(statistics[1][1].length).keys()]}
@@ -104,7 +110,7 @@ const DisplayTests = ({ tests, versions }) => {
             />
             <VictoryAxis
               style={{
-                tickLabels: { fontSize: 8, padding: 0 }
+                tickLabels: { fontSize: 8, padding: 2 }
               }}
               dependentAxis
               // tickFormat specifies how ticks should be displayed
