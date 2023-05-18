@@ -60,7 +60,7 @@ const TestSearch = () => {
     const folders = new Set();
     tests.forEach(test => {
       if (test.version) versions.add(test.version);
-      if (test.hasOwnProperty('built-ins')) Object.keys(test['built-ins']).forEach(builtIn => builtIns.add(builtIn));
+      if (test.hasOwnProperty('builtIns')) Object.keys(test['builtIns']).forEach(builtIn => builtIns.add(builtIn));
       folders.add(test.pathSplit[1]);
     });
     versions.add('undefined');
@@ -81,7 +81,7 @@ const TestSearch = () => {
 
       let ret = false;
       selectedBuiltInContained.forEach((el) => {
-        if (test['built-ins'] && Object.keys(test['built-ins']).includes(el)) {
+        if (test['builtIns'] && Object.keys(test['builtIns']).includes(el)) {
           ret = true;
         }
       });
@@ -212,7 +212,7 @@ const TestSearch = () => {
         <Box>
           <Box>
             <MultipleSelect
-              title='BuiltIn Folder'
+              title='Folder'
               list={listBuiltInsBelong}
               selection={selectedBuiltInBelong}
               setSelection={setSelectedBuiltInBelong}
