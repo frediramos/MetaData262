@@ -34,10 +34,10 @@ const DisplayTests = ({ tests, versions }) => {
     });
 
     let stackList = [[], []];
+    versions.forEach(() => {stackList[0].push([])})
     let linesList = [];
     Object.keys(subPath).forEach(elm => {
       versions.forEach((v,i) => {
-        stackList[0].push([])
         stackList[0][i].push({ 'x': elm, 'y': 100 * subPath[elm].versions[v] / subPath[elm].total});
       })
       stackList[1].push(elm);
@@ -47,6 +47,12 @@ const DisplayTests = ({ tests, versions }) => {
     versionsSumTests2 = versionsSumTests2.filter(function(item) {
       return item['number'] !== 0
     })
+    stackList[0] = stackList[0].filter((versionList) => {
+      for (let builtIn of versionList) {
+        if (builtIn['y'] !== 0) return true;
+      }
+      return false;
+    });
 
     console.log('time calculate statistics:', Date.now() - sw)
     return [
@@ -58,6 +64,7 @@ const DisplayTests = ({ tests, versions }) => {
 
   const statistics = statPie();
   console.log(statistics[0]);
+  console.log(statistics[1]);
 
   Object.keys(statistics[0]).forEach(k => {
     let value = statistics[0][k]['version']
@@ -82,7 +89,7 @@ const DisplayTests = ({ tests, versions }) => {
         </Grid>
         <Grid item xs={6}>
           <VictoryChart
-            height={statistics[1][0].length * 1.5}
+            height={statistics[1][0].length * 20}
             padding={{left: 85, right:10 }}
               theme={VictoryTheme.material}
               minDomain={{ y: 0 }}
